@@ -46,17 +46,16 @@ sudo apt install ca-certificates
 sudo apt update
 
 sudo apt install beldex-master-node
+
+sudo beldexd-download-lmdb https://beldex.s3.ap-south-1.amazonaws.com/data.mdb
+
+//The above line will download the blockckain snapshot, this will reduce the sync time. If you want to sync the blockchain from the beginning you can skip the above line
+
 ```
 
 The services will run via systemd as `beldex-node.service`, `beldex-storage-server.service`, `beldet-router.service` and `belnet-trigger.service`
 
-Once the blockchain has synced to the server (which can take several hours), your Master Node will be ready to be staked. You can use the `beldexd status` command to check the sync progress.
-
-Alternatively, the blockchain can typically be downloaded in a fraction of the time required to sync it via the Master Node network, using the following commands:
-
-```
-sudo beldexd-download-lmdb https://beldex.s3.ap-south-1.amazonaws.com/data.mdb
-```
+Once the blockchain has synced to the server (which can take several hours, If sync from the beginning), your Master Node will be ready to be staked. You can use the `beldexd status` command to check the sync progress.
 
 ### Express guide - New Master Node Setup
 
