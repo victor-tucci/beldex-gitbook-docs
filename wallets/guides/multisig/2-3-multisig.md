@@ -10,7 +10,7 @@ In short, the process is:
 
 1. All parties command `prepare_multisig` and send data to ALL other parties
 2. All parties command `make_multisig <threshold> <data1> <data2>` and send 2nd batch of data to ALL other parties
-3. All parties command `finalize_multisig <data1> <data2>` with the data from ALL other parties.
+3. All parties command `exchange_multisig_info <data1> <data2>` with the data from ALL other parties.
 
 **Receiving**
 
@@ -91,14 +91,14 @@ With 2/3 there's an additional step to be done here. The new `Multisig...arg` in
 
 Persons 2 & 3 do the same as above and send the info to other 2 parties.
 
-#### Step 3 - Finalize Multisig <a href="#step-3-finalize-multisig" id="step-3-finalize-multisig"></a>
+#### Step 3 - Exchange Multisig <a href="#step-3-finalize-multisig" id="step-3-finalize-multisig"></a>
 
 Here we do one last command to make the wallet ready for receiving. It requires the 2nd batch of `Multisig…....arg` strings received from other parties.
 
 **Person 1** will run the command:
 
 ```
-finalize_multisig MultisigxV1Vg1tsRLurvAc5aSA9Hd9God3MQhijCFoE1rPDFzx7ufwhs28u6jmEhy7ktZbUEGfRtTuFjjKzJYb61fnFwnysBBnfYm4xJWcJ4qM4khSb2KkyAKDuT39pTvdmemhojNjeYCmgSQ1NZLyBj48R1tVpiGNxa7TDnGbSgLuKBq35AX6jfu5PECAcDDn22CFQbJZip7xnBbn89Szzh27xeozfxcLiqqm MultisigxV14xDZBGACz3iUh2aVKGE5q5VzcvJdg2qCvZECgUWCdy5QNXsUtCgFMXPa7FyNKVy2AnUg3ePEnKqWkgKVvA81axTSfYm4xJWcJ4qM4khSb2KkyAKDuT39pTvdmemhojNjeYCmCNaRSsDEcemLLL8wCvzsy5R6hhkhWLYkD9vhZwprSFFKMZ7tfRko2VfMBoKQhB7PKXbf1npk2xceVKu2y7kExywb
+exchange_multisig_info MultisigxV1Vg1tsRLurvAc5aSA9Hd9God3MQhijCFoE1rPDFzx7ufwhs28u6jmEhy7ktZbUEGfRtTuFjjKzJYb61fnFwnysBBnfYm4xJWcJ4qM4khSb2KkyAKDuT39pTvdmemhojNjeYCmgSQ1NZLyBj48R1tVpiGNxa7TDnGbSgLuKBq35AX6jfu5PECAcDDn22CFQbJZip7xnBbn89Szzh27xeozfxcLiqqm MultisigxV14xDZBGACz3iUh2aVKGE5q5VzcvJdg2qCvZECgUWCdy5QNXsUtCgFMXPa7FyNKVy2AnUg3ePEnKqWkgKVvA81axTSfYm4xJWcJ4qM4khSb2KkyAKDuT39pTvdmemhojNjeYCmCNaRSsDEcemLLL8wCvzsy5R6hhkhWLYkD9vhZwprSFFKMZ7tfRko2VfMBoKQhB7PKXbf1npk2xceVKu2y7kExywb
 ```
 
 Unfortunately the wallet will not display an output at this point. There's no indication that the process was successfully completed (for now). All 3 persons do the same, and all 3 wallets will show the same address after this step.
