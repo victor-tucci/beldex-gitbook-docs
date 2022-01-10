@@ -10,7 +10,7 @@ In short, the process is:
 
 1. All parties command `prepare_multisig` and send data to ALL other parties
 2. All parties command `make_multisig <threshold> <data1> <data2>` and send 2nd batch of data to ALL other parties
-3. All parties command `exchange_multisig_info <data1> <data2>` with the data from ALL other parties.
+3. All parties command `exchange_multisig_keys <data1> <data2>` with the data from ALL other parties.
 
 **Receiving**
 
