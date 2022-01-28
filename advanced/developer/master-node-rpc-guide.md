@@ -121,13 +121,13 @@ Get the master node public key of the queried daemon. The daemon must be started
 
 **Outputs**
 
-* String service\_node\_pubkey
+* String master\_node\_pubkey
 
-> The public key identifying the queried service node
+> The public key identifying the queried master node
 
-### **get\_service\_nodes**
+### **get\_master\_nodes**
 
-Get the metadata currently associated with the queried service node public keys such as, registration height and contributors, etc. If no public key is specified, this returns all the metadata for every service node the queried daemon currently knows about.
+Get the metadata currently associated with the queried master node public keys such as, registration height and contributors, etc. If no public key is specified, this returns all the metadata for every service node the queried daemon currently knows about.
 
 **Testnet Example**
 
@@ -166,19 +166,19 @@ Get the metadata currently associated with the queried service node public keys 
 
 **Inputs**
 
-* String\[] service\_node\_pubkeys
+* String\[] master\_node\_pubkeys
 
-> An array of service node public keys in strings that you wish to query metadata for. If an empty array is given, this RPC command returns all service nodes it knows about.
+> An array of master node public keys in strings that you wish to query metadata for. If an empty array is given, this RPC command returns all master nodes it knows about.
 
 **Outputs**
 
-* Entry\[] service\_node\_states
+* Entry\[] master\_node\_states
 
-> The array of metadata for the queried service node(s)&#x20;
+> The array of metadata for the queried master node(s)&#x20;
 
-* String service\_node\_pubkey
+* String master\_node\_pubkey
 
-> The queried service node’s identifying public key
+> The queried master node’s identifying public key
 
 * Uint64 registration\_height
 
@@ -186,19 +186,19 @@ Get the metadata currently associated with the queried service node public keys 
 
 * Uint64 last\_reward\_block\_height
 
-> The last block height this service node received a reward. Rewards are sent to service nodes whom have been waiting longest since their last reward and are then sent to the back of the queue.
+> The last block height this master node received a reward. Rewards are sent to service nodes whom have been waiting longest since their last reward and are then sent to the back of the queue.
 
 * Uint64 last\_reward\_transaction\_index
 
-> The position in the queue to receive a reward for the service nodes grouped in the last\_reward\_block\_height.
+> The position in the queue to receive a reward for the master nodes grouped in the last\_reward\_block\_height.
 
 * Uint64 last\_uptime\_proof
 
-> Unix epoch timestamp of the last time this daemon has received a ping from the queried service node.
+> Unix epoch timestamp of the last time this daemon has received a ping from the queried master node.
 
 * Contribution\[] contributors
 
-> An array consisting of all the addresses that have contributed to the queried service node.
+> An array consisting of all the addresses that have contributed to the queried master node.
 
 * Uint64 Contribution.amount
 
@@ -218,12 +218,12 @@ Get the metadata currently associated with the queried service node public keys 
 
 * Uint64 total\_reserved
 
-> The total Beldex that has been reserved by all contributors. The remaining Beldex is open for other contributors to increase their stake towards the service node.
+> The total Beldex that has been reserved by all contributors. The remaining Beldex is open for other contributors to increase their stake towards the master node.
 
 * Uint64 portions\_for\_operator
 
-> The operator cut expressed as a value from 0 -> STAKING\_PORTIONS (defined in beldex/src/cryptonote\_config.h) which is the fee taken from the service node reward and given to the operator address before rewards are distributed to the contributors.
+> The operator cut expressed as a value from 0 -> STAKING\_PORTIONS (defined in beldex/src/cryptonote\_config.h) which is the fee taken from the master node reward and given to the operator address before rewards are distributed to the contributors.
 
 * Uint64 operator\_address
 
-> The wallet address which is the primary owner of the service node and also the address which the operator cut is sent to.
+> The wallet address which is the primary owner of the master node and also the address which the operator cut is sent to.
