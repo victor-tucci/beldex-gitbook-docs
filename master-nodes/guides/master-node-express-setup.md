@@ -47,10 +47,6 @@ sudo apt update
 
 sudo apt install beldex-master-node
 
-sudo beldexd-download-lmdb https://beldex.s3.ap-south-1.amazonaws.com/data.mdb
-
-//The above line will download the blockckain snapshot, this will reduce the sync time. If you want to sync the blockchain from the beginning you can skip the above line
-
 ```
 
 The services will run via systemd as `beldex-node.service`, `beldex-storage-server.service`, `beldet-router.service` and `belnet-trigger.service`
