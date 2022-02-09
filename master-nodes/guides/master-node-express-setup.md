@@ -154,9 +154,9 @@ You can now jump onto [explorer.beldex.io](https://explorer.beldex.io), open the
 When a new release is available, upgrading is as simple as syncing your repositories:
 
 ```
-sudo apt update
+curl -L https://deb.beldex.io/pub.gpg | sudo apt-key add -
 
-mv /root/.beldex /var/lib/beldex
+sudo apt update
 ```
 
 Then installing any updates using:
@@ -172,7 +172,15 @@ During the upgrade, the running instance of `beldexd` will be restarted to ensur
 If, for some reason, you want to install _only_ updated Beldex package upgrades, but not other system packages, then instead of `sudo apt upgrade` you can use:
 
 ```
-sudo apt install beldex-storage-server beldexd belnet-router
+sudo apt upgrade beldexd 
+```
+
+```
+sudo apt upgrade beldex-storage-server 
+```
+
+```
+sudo apt upgrade belnet-router 
 ```
 
 ### Back-ups
