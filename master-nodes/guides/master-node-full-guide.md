@@ -14,13 +14,13 @@ You can of course run the Beldex software on any operating system that you can g
 
 Full summary of Beldex Master Node Requirements. This may change depending on Master Node functionality, so you should check here regularly, or follow our [Telegram](https://t.me/official\_beldex)/[Discord](https://discord.gg/Hj4MAmA5gs) announcements channel.
 
-| Spec          | Note                                                                                                                   |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| Latest Binary | [Bucephalus v4.0.0](https://github.com/Beldex-Coin/beldex/releases/download/v4.0.0/beldex-linux-x86\_64-v4.0.0.tar.gz) |
-| Software      | Ubuntu 18.04                                                                                                           |
-| Storage       | 30-50gb                                                                                                                |
-| Ram           | 2-4 gb                                                                                                                 |
-| CPU           | 1 Core                                                                                                                 |
+| Spec          | Note                                                                                                                |
+| ------------- | ------------------------------------------------------------------------------------------------------------------- |
+| Latest Binary | [Bucephalus v4.0.2](https://github.com/Beldex-Coin/beldex/releases/download/v4.0.2/beldex-linux-x86\_64-v4.0.2.zip) |
+| Software      | Ubuntu 18.04 or higher                                                                                              |
+| Storage       | 40GB or more                                                                                                        |
+| Ram           | 2-4 GB                                                                                                              |
+| CPU           | 1 Core                                                                                                              |
 
 ### Table of Contents <a href="#table-of-contents" id="table-of-contents"></a>
 
