@@ -10,7 +10,7 @@ This use case overlaps with integrated addresses. Subaddresses are generally pre
 
 ### Prevent payer from linking your payouts together <a href="#prevent-payer-from-linking-your-payouts-together" id="prevent-payer-from-linking-your-payouts-together"></a>
 
-To prevent the payer from linking your payouts together simply generate a new subaddress for each payout. This way services like [Shapeshift](https://shapeshift.io) wouldn't know it is you again receving Beldex.
+To prevent the payer from linking your payouts together simply generate a new subaddress for each payout. This way services like [Shapeshift](https://shapeshift.io/) wouldn't know it is you again receving Beldex.
 
 Note it won't help if you have an account with the service. Then your payouts are already linked in the service database, regardless of Beldex.
 

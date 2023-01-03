@@ -177,7 +177,7 @@ Multisig info exported to mi1
 
 The file `mi1` will be located in the shell working folder\*
 
-**Person A** sends that file to Person B. They can send the file in many ways, preferably through by handing a usb drive with the file on it, however If you would like to send the file through terminal use [https://transfer.sh/](https://transfer.sh), an optional step has been added if you choose to use this method.
+**Person A** sends that file to Person B. They can send the file in many ways, preferably through by handing a usb drive with the file on it, however If you would like to send the file through terminal use [https://transfer.sh/](https://transfer.sh/), an optional step has been added if you choose to use this method.
 
 **Person B** does the same, but changing the filename and runs the command:
 

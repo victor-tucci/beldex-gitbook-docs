@@ -312,7 +312,7 @@ signature file saved to: beldex_reserve_proof
 
 This signature file `beldex_reserve_proof` will be saved in your Beldex folder, where your daemon and wallet keys are. Keep in mind every time you run the `get_reserve_proof`command it will overwrite your `beldex_reserve_proof` file.
 
-You will want to send this file to the person who requires the proof. You can upload the `beldex_reserve_proof` file through [https://transfer.sh/](https://transfer.sh) by running the command within the folder of your signature file:
+You will want to send this file to the person who requires the proof. You can upload the `beldex_reserve_proof` file through [https://transfer.sh/](https://transfer.sh/) by running the command within the folder of your signature file:
 
 ```
 curl --upload-file ./beldex_reserve_proof https://transfer.sh/beldex_reserve_proof`
@@ -334,7 +334,7 @@ Make sure you provide the following to the individual who will be checking your 
 
 To check a reserve proof we need to first have the `beldex_reserve_proof` file in our Beldex folder.
 
-If you do not have the `beldex_reserve_proof` file in your beldex folder request the individual sending the file to you to use [https://transfer.sh/](https://transfer.sh), once they send you the link to their `beldex_reserve_proof` you can use the following command to download it.
+If you do not have the `beldex_reserve_proof` file in your beldex folder request the individual sending the file to you to use [https://transfer.sh/](https://transfer.sh/), once they send you the link to their `beldex_reserve_proof` you can use the following command to download it.
 
 ```
 curl <link> -o beldex_reserve_proof
@@ -394,7 +394,7 @@ signature file saved to: beldex_spend_proof
 
 This signature file `beldex_spend_proof` will be saved in your Beldex folder, where your daemon and wallet keys are. Keep in mind every time you run the `get_spend_proof` command it will overwrite your `beldex_spend_proof file`.
 
-You will want to send this file to the person who requires the proof. You can upload the beldex\_spend\_proof file through [https://transfer.sh/](https://transfer.sh) by running the command within the folder of your signature file:
+You will want to send this file to the person who requires the proof. You can upload the beldex\_spend\_proof file through [https://transfer.sh/](https://transfer.sh/) by running the command within the folder of your signature file:
 
 ```
 curl --upload-file ./beldex_spend_proof https://transfer.sh/beldex_spend_proof
@@ -416,7 +416,7 @@ Make sure you provide the following to the individual who will be checking your 
 
 To check a spend proof we need to first have the `beldex_spend_proof` file in our Beldex folder and the txid associated with the transaction being proved.
 
-If you do not have the `beldex_spend_proof` file in your beldex folder request the individual sending the file to you to use [https://transfer.sh/](https://transfer.sh), once they send you the link to their `beldex_spend_proof` you can use the following command to download it.
+If you do not have the `beldex_spend_proof` file in your beldex folder request the individual sending the file to you to use [https://transfer.sh/](https://transfer.sh/), once they send you the link to their `beldex_spend_proof` you can use the following command to download it.
 
 ```
 curl <link> -o beldex_spend_proof
@@ -476,7 +476,7 @@ signature file saved to: beldex_tx_proof
 
 This signature file `beldex_tx_proof` will be saved in your Beldex folder, where your daemon and wallet keys are. Keep in mind every time you run the `get_tx_proof` command it will overwrite your `beldex_tx_proof` file.
 
-You will want to send this file to the person who requires the proof. You can upload the `beldex_tx_proof` file through [https://transfer.sh/](https://transfer.sh) by running the command within the folder of your signature file:
+You will want to send this file to the person who requires the proof. You can upload the `beldex_tx_proof` file through [https://transfer.sh/](https://transfer.sh/) by running the command within the folder of your signature file:
 
 ```
 curl --upload-file ./beldex_tx_proof https://transfer.sh/beldex_tx_proof
@@ -499,7 +499,7 @@ Make sure you provide the following to the individual who will be checking your 
 
 To check a tx proof we need to first have the `beldex_tx_proof` file in our Beldex folder, the receiver's address and the txid associated with the transaction being proved.
 
-If you do not have the `beldex_tx_proof` file in your beldex folder request the individual sending the file to you to use [https://transfer.sh/](https://transfer.sh), once they send you the link to their `beldex_tx_proof` you can use the following command to download it.
+If you do not have the `beldex_tx_proof` file in your beldex folder request the individual sending the file to you to use [https://transfer.sh/](https://transfer.sh/), once they send you the link to their `beldex_tx_proof` you can use the following command to download it.
 
 ```
 curl <link> -o beldex_tx_proof

@@ -11,7 +11,7 @@ If you have a Mnemonic Seed Phrase, restoring your wallet from it would probably
 * Download the latest release of wallet CLI software for your desired operating system: https://github.com/beldex-coin/be/reldex/releases
 * Unzip `beldex-[operating-system]-[platform]-[version].zip` file
 
-![](<../../.gitbook/assets/cliwalletfolder (1).jpg>)
+![](../../.gitbook/assets/cliwalletfolder.jpg)
 
 ### Step 2: Run wallet in restore mode <a href="#step-2-run-wallet-in-restore-mode" id="step-2-run-wallet-in-restore-mode"></a>
 
