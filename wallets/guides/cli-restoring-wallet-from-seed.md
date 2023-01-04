@@ -11,7 +11,7 @@ To fully restore your wallet and be able to view balance and make transactions, 
 * Download the latest release of wallet CLI software for your desired operating system: [https://github.com/beldex-coin/beldex/releases](https://github.com/beldex-coin/beldex/releases)
 * Unzip `beldex-[operating-system]-[platform]-[version].zip` file
 
-![](../../.gitbook/assets/cliwalletfolder.jpg)
+![](<../../.gitbook/assets/cliwalletfolder (1).jpg>)
 
 ### Step 2: Run wallet in restore mode <a href="#step-2-run-wallet-in-restore-mode" id="step-2-run-wallet-in-restore-mode"></a>
 

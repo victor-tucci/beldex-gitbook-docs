@@ -33,6 +33,12 @@
   * [Master Node Express Setup](master-nodes/guides/master-node-express-setup.md)
   * [Master Node Update Guide](master-nodes/guides/master-node-update-guide.md)
 
+## BelNet
+
+* [Exit Node Setup Guide](belnet/exit-node-setup-guide.md)
+* [Exit Node Setup Using Docker](belnet/exit-node-setup-using-docker.md)
+* [MNApp Hosting Guide Using Nginx](belnet/mnapp-hosting-guide-using-nginx.md)
+
 ## Advanced
 
 * [Developer](advanced/developer/README.md)
@@ -42,3 +48,5 @@
   * [Wallet RPC Guide - Old](advanced/developer/wallet-rpc-guide-old.md)
   * [Wallet RPC Guide](advanced/developer/wallet-rpc-guide.md)
   * [Developer FAQ](advanced/developer/developer-faq.md)
+* [BelNet](advanced/belnet/README.md)
+  * [Exit Node Setup Guide](advanced/belnet/exit-node-setup-guide.md)

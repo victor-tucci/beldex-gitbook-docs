@@ -14,13 +14,13 @@ You can of course run the Beldex software on any operating system that you can g
 
 Full summary of Beldex Master Node Requirements. This may change depending on Master Node functionality, so you should check here regularly, or follow our [Telegram](https://t.me/official\_beldex)/[Discord](https://discord.gg/Hj4MAmA5gs) announcements channel.
 
-| Spec          | Note                                                                                                                |
-| ------------- | ------------------------------------------------------------------------------------------------------------------- |
-| Latest Binary | [Bucephalus v4.0.2](https://github.com/Beldex-Coin/beldex/releases/download/v4.0.2/beldex-linux-x86\_64-v4.0.2.zip) |
-| Software      | Ubuntu 18.04 or higher                                                                                              |
-| Storage       | 40GB or more                                                                                                        |
-| Ram           | 2-4 GB                                                                                                              |
-| CPU           | 1 Core                                                                                                              |
+| Spec          | Note                                                                                                                   |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| Latest Binary | [Bucephalus v4.1.0](https://github.com/Beldex-Coin/beldex/releases/download/v4.1.0/beldex-linux-x86\_64-v4.1.0.tar.xz) |
+| Software      | Ubuntu 18.04 or higher                                                                                                 |
+| Storage       | 40GB or more                                                                                                           |
+| Ram           | 2-4 GB                                                                                                                 |
+| CPU           | 1 Core                                                                                                                 |
 
 ### Table of Contents <a href="#table-of-contents" id="table-of-contents"></a>
 
@@ -160,7 +160,7 @@ You will be prompted to authorise the use of disk space, type `y` and enter to a
 
 If you are prompted during the upgrade that a new version of any file is available then click the up and down arrows until you are hovering over `install the package maintainer’s version` and click enter.
 
-![](../../.gitbook/assets/snode2.jpg)
+![](<../../.gitbook/assets/snode2 (1).jpg>)
 
 Alright, good to go. Our server is now set up, up to date, and is not running as root. On to the fun part!
 
@@ -649,7 +649,7 @@ Once this command completes your staking transaction will be sent to be included
 ~/beldex/beldexd print_mn_status
 ```
 
-or by looking for your `<Master Node Public Key>` in the "Master Nodes Awaiting" section on [explorer.beldex.io](http://explorer.beldex.io)
+or by looking for your `<Master Node Public Key>` in the "Master Nodes Awaiting" section on [explorer.beldex.io](http://explorer.beldex.io/)
 
 Once the master node registration is received you can send the `<Master Node Public Key>`to your contributors with the amount of Beldex they are required to stake.
 
@@ -695,9 +695,9 @@ If you want more detailed Master Node status you can use the follow command:
 ~/beldex/beldexd print_mn_status
 ```
 
-You can jump onto [http://explorer.beldex.io/](http://explorer.beldex.io) to see if your Master Node is in the list or we can continue in the terminal to output the same information.
+You can jump onto [http://explorer.beldex.io/](http://explorer.beldex.io/) to see if your Master Node is in the list or we can continue in the terminal to output the same information.
 
-> If you are running your Master Node on testnet go to [http://testnetexplorer.beldex.io/](http://testnetexplorer.beldex.io) instead.
+> If you are running your Master Node on testnet go to [http://testnetexplorer.beldex.io/](http://testnetexplorer.beldex.io/) instead.
 
 To check this information directly with the master node itself, first get the current block height by running `~/beldex/beldexd status` into the terminal: it will output this information. Once we have the block height we can then check the current Master Nodes on the network at our specified block height.
 

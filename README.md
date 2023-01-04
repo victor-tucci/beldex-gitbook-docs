@@ -6,7 +6,7 @@ Beldex is a privacy currency based on Monero, Beldex currently offers incentive 
 
 Beldex is mainly focused on utilities where you can spend beldex freely, we are in the process of creating a crypto ecosystem to eliminate the middleman and perform financial transactions with absolute freedom
 
-More information on the project can be found on the [website](https://beldex.io)
+More information on the project can be found on the [website](https://beldex.io/)
 
 If you are unsure where to start check out our "Getting Started" page by [clicking here](getting-started.md)
 

@@ -30,7 +30,7 @@ You will be prompted to authorise the use of disk space, type `y` and enter to a
 
 If you are prompted during the upgrade that a new version of any file is available then click the up and down arrows until you are hovering over `install the package maintainer’s version` and click enter.
 
-![](<../../.gitbook/assets/snode2 (1).jpg>)
+![](../../.gitbook/assets/snode2.jpg)
 
 Alright, good to go. Our server is now up to date. On to the fun part!
 
