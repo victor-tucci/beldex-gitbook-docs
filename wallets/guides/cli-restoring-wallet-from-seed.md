@@ -16,7 +16,18 @@ To fully restore your wallet and be able to view balance and make transactions, 
 ### Step 2: Run wallet in restore mode <a href="#step-2-run-wallet-in-restore-mode" id="step-2-run-wallet-in-restore-mode"></a>
 
 * Open a [Command Prompt](https://en.wikipedia.org/wiki/Cmd.exe) (Windows) or [Terminal](https://en.wikipedia.org/wiki/Terminal\_emulator) (Linux / OSX) and navigate to the wallet folder
-* Run wallet with `--restore-deterministic-wallet` argument: `./beldex-wallet-cli --restore-deterministic-wallet`
+* Run wallet with `--restore-deterministic-wallet` argument
+
+_**For Linux:**_
+
+```shell
+./beldex-wallet-cli --restore-deterministic-wallet
+```
+
+_**For Windows:**_
+
+<pre class="language-shell"><code class="lang-shell"><strong>beldex-wallet-cli --restore-deterministic-wallet
+</strong></code></pre>
 
 ### Step 3: Enter wallet name <a href="#step-3-enter-wallet-name" id="step-3-enter-wallet-name"></a>
 
