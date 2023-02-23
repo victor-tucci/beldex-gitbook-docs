@@ -49,7 +49,7 @@ sudo apt install beldex-master-node
 
 ```
 
-The services will run via systemd as `beldex-node.service`, `beldex-storage-server.service` and `beldet-router.service`
+The services will run via systemd as `beldex-node.service`, `beldex-storage-server.service` and `belnet-router.service`
 
 Once the blockchain has synced to the server (which can take several hours, If sync from the beginning), your Master Node will be ready to be staked. You can use the `beldexd status` command to check the sync progress.
 
