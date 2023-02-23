@@ -49,7 +49,7 @@ sudo apt install beldex-master-node
 
 ```
 
-The services will run via systemd as `beldex-node.service`, `beldex-storage-server.service`, `beldet-router.service` and `belnet-trigger.service`
+The services will run via systemd as `beldex-node.service`, `beldex-storage-server.service` and `beldet-router.service`
 
 Once the blockchain has synced to the server (which can take several hours, If sync from the beginning), your Master Node will be ready to be staked. You can use the `beldexd status` command to check the sync progress.
 
@@ -89,21 +89,21 @@ sudo apt install beldex-master-node
 
 This will detect your public IP (or allow you to enter it yourself) and automatically update the `/etc/beldex/beldex.conf` configuration file with the necessary additional settings to run a Master Node.
 
-#### Step 2: Status Check
+#### Step 2: Belnet Status Check
 
-Check whether your Master Node setup is done correctly or not using the below command.
+Check whether your Belnet-router setup is done correctly or not using the below command.
 
 ```
-systemctl status belnet-trigger.service
+systemctl status belnet-router.service
 ```
 
-If the Master Node is setup correctly you will get the message shown in the below screenshot.
+If the Belnet is setup correctly you will get the message shown in the below screenshot.
 
-![](<../../.gitbook/assets/Screenshot from 2021-11-27 19-44-12.png>)
+![](<../../.gitbook/assets/Belnet-router-active-status.png>)
 
-If the Master Node is not setup correctly you will get the error message as shown in the image below&#x20;
+If the Belnet is not setup correctly you will get the error message as shown in the image below&#x20;
 
-![](<../../.gitbook/assets/Screenshot from 2021-11-27 20-13-26.png>)
+![](<../../.gitbook/assets/Belnet-router-failed-status.png>)
 
 The issue is because the public IP and  port of your VPS is not set in `belnet.ini` file, so you need to set it manually, the file is located in the path `/var/lib/belnet/router/belnet.ini` .  Add the IP address and port in the file as follows
 
