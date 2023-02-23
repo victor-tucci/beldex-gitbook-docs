@@ -38,6 +38,7 @@
 * [Exit Node Setup Guide](belnet/exit-node-setup-guide.md)
 * [Exit Node Setup Using Docker](belnet/exit-node-setup-using-docker.md)
 * [MNApp Hosting Guide Using Nginx](belnet/mnapp-hosting-guide-using-nginx.md)
+* [BelNet GUI Installation Guide](belnet/belnet-gui-installation-guide.md)
 
 ## Advanced
 
