@@ -39,7 +39,7 @@ sudo ./belnet
 Then, copy and paste the following command to open the belnet.ini file.
 
 ```shell
-sudo vim /var/lib/belnet/belnet.inil
+sudo vim /var/lib/belnet/belnet.ini
 ```
 
 Scroll down to the \[network] section and configure the keyfile by giving it a name of your choice. Your MNApp private key will be stored in the following path. Here, we’ve named our keyfile, mnappkey.private
