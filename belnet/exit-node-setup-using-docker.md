@@ -31,7 +31,7 @@ https://github.com/docker/compose/releases/download/1.28.5/docker-compose-$(unam
 Enter the following command into the terminal to pull the BelNet Exit Node image from the docker hub.
 
 ```bash
-docker pull beldex/belnet-exitnode:v1
+docker pull beldex/belnet-exitnode:v2
 ```
 
 ## Step 3: Download & Compose yml File
