@@ -1,5 +1,7 @@
 # Wallet RPC Guide - Old
 
+### &#x20;<a href="#introduction" id="introduction"></a>
+
 ### Introduction <a href="#introduction" id="introduction"></a>
 
 This is a list of the beldex-wallet-rpc calls, their inputs and outputs, and examples of each. The program beldex-wallet-rpc replaced the rpc interface that was in simplewallet and then beldex-wallet-cli.
@@ -109,6 +111,16 @@ Note: "atomic units" refer to the smallest fraction of 1 BDX according to the be
 * [sign\_multisig](wallet-rpc-guide-old.md#sign\_multisig)
 * [submit\_multisig](wallet-rpc-guide-old.md#submit\_multisig)
 * [get\_version](wallet-rpc-guide-old.md#get\_version)
+* [bns\_buy\_mapping](wallet-rpc-guide-old.md#sources)
+* [bns\_renew\_mapping](wallet-rpc-guide-old.md#sources-1)
+* [bns\_update\_mapping](wallet-rpc-guide-old.md#sources-2)
+* [bns\_make\_update\_mapping\_signature](wallet-rpc-guide-old.md#sources-3)
+* [bns\_hash\_name](wallet-rpc-guide-old.md#sources-4)
+* [bns\_known\_names](wallet-rpc-guide-old.md#sources-5)
+* [bns\_add\_known\_names](wallet-rpc-guide-old.md#sources-6)
+* [bns\_encrypt\_value](wallet-rpc-guide-old.md#sources-7)
+* [bns\_decrypt\_value](wallet-rpc-guide-old.md#sources-8)
+* [coin\_burn](wallet-rpc-guide-old.md#sources-9)
 
 ### JSON RPC Methods: <a href="#json-rpc-methods" id="json-rpc-methods"></a>
 
@@ -2741,6 +2753,421 @@ $ curl -X POST http://localhost:19092/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
   }
 }
 ```
+
+### bns\_buy\_mapping <a href="#sources" id="sources"></a>
+
+Map the BNS name to the BChat Id, Belnet key, and wallet address.
+
+Alias: _None_.
+
+Inputs:
+
+* _years_ - string; (Optional) The mapping years "1year || 1y" , "2years || 2y" , "5years || 5y" , "10years || 10y".
+* _owner_ - string; (Optional) The ed25519 public key or wallet address that has authority to update the mapping.
+* _backup\_owner_ - string; (Optional) The secondary, backup public key that has authority to update the mapping.
+* _name_ - string; The name to purchase via Beldex Name Service.
+* _value\_bchat_ - string; The value of bchat that the name maps to via Beldex Name Service, (i.e. For Bchat: \[display name->bchat public key]).
+* _value\_wallet_ - string; The value of wallet that the name maps to via Beldex Name Service, (i.e, For wallets: \[name->wallet address]).
+* _value\_belnet_ - string; The value of wallet that the name maps to via Beldex Name Service, (i.e, For Belnet: \[name->domain name]).
+* _account\_index_ - uint32\_t; (Optional) Transfer from this account index. (Defaults to 0).
+* _subaddr\_indices_ - array of unsigned int; (Optional) List of subaddress indices to query for transfers. (defaults to 0).
+* _priority_ - unsigned int; Set a priority for the transaction. Accepted Values are: 0 and 1 for: flash and unimportant.
+* _get\_tx\_key_ - boolean; (Optional) Return the transaction keys after sending.
+* _do\_not\_relay_ - boolean; (Optional) If true, do not relay this sweep transfer. (Defaults to false).
+* _get\_tx\_hex_ - boolean; (Optional) return the transactions as hex encoded string. (Defaults to false).
+* _get\_tx\_metadata_ - boolean; (Optional) return the transaction metadata as a string. (Defaults to false).
+
+Outputs:
+
+* _tx\_hash_ - String for the publicly searchable transaction hash.
+* _tx\_key_ - String for the transaction key if get\_tx\_key is true, otherwise, blank string.
+* _amount_ - Amount transferred for the transaction.
+* _fee_ - Integer value of the fee charged for the txn.
+* _tx\_blob_ - Raw transaction represented as hex string, if get\_tx\_hex is true.
+* _tx\_metadata_ - Set of transaction metadata needed to relay this transfer later, if get\_tx\_metadata is true.
+* _multisig\_txset_ - Set of multisig transactions in the process of being signed (empty for non-multisig).
+* _unsigned\_txset_ - String. Set of unsigned tx for cold-signing purposes.
+
+Example:
+
+<pre><code><strong>$ curl -X POST http://127.0.0.1:19092/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"bns_buy_mapping","params":{"years":"5y","name":"toretto.bdx","value_bchat":"bdb37ba20b46b5576012eec7547f70eb532276085bb04b6152354de5b187b29807","address":"9zy7tYvhhjGUPByuk8AxvjJtK2gK7Vt4ebHSS7QuKojeD7hR6G2253aMmFCpcwaAjXR75BWy7Vjor5chH3nG79Uk3aRqWtR"}}' -H 'Content-Type: application/json'
+</strong>{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+    "amount": 0,
+    "fee": 2000010858940,
+    "multisig_txset": "",
+    "tx_blob": "",
+    "tx_hash": "6176445481d469dc45cbe694503d0c415233ede9324a08c6db1e073a6d8ad37f",
+    "tx_key": "",
+    "tx_metadata": "",
+    "unsigned_txset": ""
+  }
+}
+</code></pre>
+
+### bns\_renew\_mapping <a href="#sources" id="sources"></a>
+
+Renew the BNS name for,
+
+* 1 Year&#x20;
+* 2 Years
+* 5 Years
+* 10 Years
+
+Alias: _None_.
+
+Inputs:
+
+* _years_ - string; (optional)The mapping years "1year || 1y" , "2years || 2y" , "5years || 5y" , "10years || 10y". Default value is "1 year"
+* _name_ - string; The name to Renew.
+* _account\_index_ - uint32\_t; (Optional) Transfer from this account index. (Defaults to 0).
+* _subaddr\_indices_ - array of unsigned int; (Optional) List of subaddress indices to query for transfers. (defaults to 0).
+* _priority_ - unsigned int; Set a priority for the transaction. Accepted Values are: 0 and 1 for: flash and unimportant.
+* _get\_tx\_key_ - boolean; (Optional) Return the transaction keys after sending.
+* _do\_not\_relay_ - boolean; (Optional) If true, do not relay this sweep transfer. (Defaults to false).
+* _get\_tx\_hex_ - boolean; (Optional) return the transactions as hex encoded string. (Defaults to false).
+* _get\_tx\_metadata_ - boolean; (Optional) return the transaction metadata as a string. (Defaults to false).
+
+Outputs:
+
+* _tx\_hash_ - String for the publicly searchable transaction hash.
+* _tx\_key_ - String for the transaction key if get\_tx\_key is true, otherwise, blank string.
+* _amount_ - Amount transferred for the transaction.
+* _fee_ - Integer value of the fee charged for the txn.
+* _tx\_blob_ - Raw transaction represented as hex string, if get\_tx\_hex is true.
+* _tx\_metadata_ - Set of transaction metadata needed to relay this transfer later, if get\_tx\_metadata is true.
+* _multisig\_txset_ - Set of multisig transactions in the process of being signed (empty for non-multisig).
+* _unsigned\_txset_ - String. Set of unsigned tx for cold-signing purposes.
+
+Example:
+
+<pre><code><strong>$ curl -X POST http://127.0.0.1:19092/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"bns_renew_mapping","params":{"years":"10y","name":"toretto.bdx"}}' -H 'Content-Type: application/json'
+</strong>{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+    "amount": 0,
+    "fee": 4000013525340,
+    "multisig_txset": "",
+    "tx_blob": "",
+    "tx_hash": "70675a41576dae95c7b06bc5efa04003f4c84cd409ced7b20d45aae717e06469",
+    "tx_key": "",
+    "tx_metadata": "",
+    "unsigned_txset": ""
+  }
+}
+</code></pre>
+
+### bns\_update\_mapping <a href="#sources" id="sources"></a>
+
+Modify the Bchat and Belnet key values, as well as the wallet's address. Additionally, it is possible to update both the Owner and Backup Owner information.
+
+Alias: _None_.
+
+Inputs:
+
+* _name_ - string; The name to Update.
+* _value\_bchat_ - string; The value of bchat that the name maps to via Beldex Name Service, (i.e. For Bchat: \[display name->bchat public key]).
+* _value\_wallet_ - string; The value of wallet that the name maps to via Beldex Name Service, (i.e, For wallets: \[name->wallet address]).
+* _value\_belnet_ - string; The value of wallet that the name maps to via Beldex Name Service, (i.e, For Belnet: \[name->domain name]).
+* _owner_ - string; (Optional) The ed25519 public key or wallet address that has authority to update the mapping.
+* _backup\_owner_ - string; (Optional) The secondary, backup public key that has authority to update the mapping.
+* _signature_ - string; (Optional) Signature derived using libsodium generichash on {current txid blob, new value blob} of the mapping to update. By default the hash is signed using the wallet's spend key as an ed25519 keypair, if signature is specified.
+* _account\_index_ - uint32\_t; (Optional) Transfer from this account index. (Defaults to 0).&#x20;
+* _subaddr\_indices_ - array of unsigned int; (Optional) List of subaddress indices to query for transfers. (defaults to 0).
+* _priority_ - unsigned int; Set a priority for the transaction. Accepted Values are: 0 and 1 for: flash and unimportant.
+* _get\_tx\_key_ - boolean; (Optional) Return the transaction keys after sending.
+* _do\_not\_relay_ - boolean; (Optional) If true, do not relay this sweep transfer. (Defaults to false).
+* _get\_tx\_hex_ - boolean; (Optional) return the transactions as hex encoded string. (Defaults to false).
+* _get\_tx\_metadata_ - boolean; (Optional) return the transaction metadata as a string. (Defaults to false).
+
+Outputs:
+
+* _tx\_hash_ - String for the publically searchable transaction hash.
+* _tx\_key_ - String for the transaction key if get\_tx\_key is true, otherwise, blank string.
+* _amount_ - Amount transferred for the transaction.
+* _fee_ - Integer value of the fee charged for the txn.
+* _tx\_blob_ - Raw transaction represented as hex string, if get\_tx\_hex is true.
+* _tx\_metadata_ - Set of transaction metadata needed to relay this transfer later, if get\_tx\_metadata is true.
+* _multisig\_txset_ - Set of multisig transactions in the process of being signed (empty for non-multisig).
+* _unsigned\_txset_ - String. Set of unsigned tx for cold-signing purposes.
+
+Example:
+
+<pre><code><strong>$ curl -X POST http://127.0.0.1:19092/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"bns_update_mapping","params":{"name":"toretto.bdx","value_bchat" : "bdff403a579c24edd0b973f9f00211ab3574ec083b2fd97b8b87de0e413e969942","value_belnet":"i85hpmcge4huukrxp8xnobkh7eodhsuy7dy8yphq9zafhcqeeago.bdx"}}' -H 'Content-Type: application/json'
+</strong>{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+    "amount": 0,
+    "fee": 14445250,
+    "multisig_txset": "",
+    "tx_blob": "",
+    "tx_hash": "54dfe6c38c37135274380cfcffaeb4167f76176e15d13b4377fcc5c88115efb7",
+    "tx_key": "",
+    "tx_metadata": "",
+    "unsigned_txset": ""
+  }
+}
+</code></pre>
+
+### bns\_make\_update\_mapping\_signature <a href="#sources" id="sources"></a>
+
+In order to modify the Owner or BackupOwner of a wallet that currently lacks ownership, it is imperative to provide the corresponding signature. This signature is essential for executing the alteration through the bns\_update\_mapping function within alternative wallets.
+
+Alias: _None_.
+
+Inputs:
+
+* _name_ - string; The name to Update using signature.
+* _owner_ - string; (Optional) The ed25519 public key or wallet address that has authority to update the mapping.
+* _backup\_owner_ - string; (Optional) The secondary, backup public key that has authority to update the mapping.
+* _account\_index_ - uint32\_t; (Optional) Transfer from this account index. (Defaults to 0).&#x20;
+
+Output:
+
+* _signature -_ A signature valid for using in BNS to update an underlying mapping.
+
+Example:
+
+<pre><code><strong>$ curl -X POST http://127.0.0.1:19092/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"bns_make_update_mapping_signature","params":{"name":"toretto.bdx","owner" : "A2Xf197qvYWAiCq525cREG2HdWhDvACVDSmmQzGa3Ajm3H5P3ktXiUTSP4j3RZ5ZnMDnDkpFihr3oFRrj2iYkuvX47LeHmT"}}' -H 'Content-Type: application/json'
+</strong>{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+    "signature": "73ef1fbcdb98f73250252cb7fece312a37eac58875451145f498eaa49a9514051d8fcdb417026192a7c07269a092c5184a9be53e8896deceb5d42716b7cb5c03"
+  }
+}
+</code></pre>
+
+### bns\_hash\_name <a href="#sources" id="sources"></a>
+
+View the hash of the BNS name.
+
+Alias: _None_.
+
+Input:
+
+* _name_ - string; The desired name to hash.
+
+Output:
+
+* name  - The name hashed and represented in base64.
+
+Example:
+
+<pre><code><strong>$ curl -X POST http://127.0.0.1:19092/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"bns_hash_name","params":{"name":"toretto.bdx"}}' -H 'Content-Type: application/json'
+</strong>{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+    "name": "4dknDpBMCXaxpvT72UvmYkyL4CgH7D0wVx3I1/unikg="
+  }
+}
+</code></pre>
+
+### bns\_known\_names <a href="#sources" id="sources"></a>
+
+Retrieve a list of BNS Names linked with a wallet.
+
+Alias: _None_.
+
+Inputs:
+
+* _decrypt_ - boolean; (Optional) If true (default false) then also decrypt and include the \`value\` field.
+* _include\_expired_ - boolean; (Optional) If true (default false) then also include expired records.
+
+Outputs:
+
+* _hashed_ - The hashed name (in base64).
+* _name_ - The plaintext name.
+* _owner_ - Address of the wallet.
+* _backup\_owner_ - backup\_owner address if given.
+* _encrypted\_bchat\_value_ - Encrypted value of bchat that the name maps to, in hex.
+* _encrypted\_wallet\_value_ - Encrypted value of wallet that the name maps to, in hex.
+* _encrypted\_belnet\_value_ - Encrypted value of belnet that the name maps to, in hex.
+* _bchat\_value_ - Decrypted bchat value that that name maps to.  Only provided if \`decrypt: true\` was specified in the request.
+* _wallet\_value_ - Decrypted wallet value that that name maps to.  Only provided if \`decrypt: true\` was specified in the request.
+* _belnet\_value_ - Decrypted belnet value that that name maps to.  Only provided if \`decrypt: true\` was specified in the request.
+* _update\_height_ - Last height that this Beldex Name Service entry was updated on the Blockchain.
+* _expiration\_height_ - For records that expire, this will be set to the expiration block height.
+* _expired_ - Indicates whether the record has expired. Only included in the response if "include\_expired" is specified in the request.
+* _txid_ - transaction id.
+
+Example:
+
+<pre><code><strong>$ curl -X POST http://127.0.0.1:19092/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"bns_known_names","params":{"decrypt":true}}' -H 'Content-Type: application/json'
+</strong>{ 
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+    "known_names": [{
+      "encrypted_bchat_value": "a55e54b4a5ed729db677a5ab1b64255de2a8e0311611e273ad52c0e260a542a1a0979f7ff1c09a6ba3aafc6524d41161b991dccd9f45bc0e1f9c2ac57ad9b77718a59ee27aa9d1957c",
+      "encrypted_belnet_value": "407e37d23b2679fbfc21a3c0232b43f003e457a10dd942032f6d44c91683028e160eda51baeecc3f82935a7a7607266493317132236e93c9785cdbf2a24beba7804de46e86f2807d",
+      "encrypted_wallet_value": "",
+      "expiration_height": 1358011,
+      "hashed": "4dknDpBMCXaxpvT72UvmYkyL4CgH7D0wVx3I1/unikg=",
+      "name": "toretto.bdx",
+      "owner": "9zy7tYvhhjGUPByuk8AxvjJtK2gK7Vt4ebHSS7QuKojeD7hR6G2253aMmFCpcwaAjXR75BWy7Vjor5chH3nG79Uk3aRqWtR",
+      "txid": "54dfe6c38c37135274380cfcffaeb4167f76176e15d13b4377fcc5c88115efb7",
+      "update_height": 1314827,
+      "value_bchat": "bdff403a579c24edd0b973f9f00211ab3574ec083b2fd97b8b87de0e413e969942",
+      "value_belnet": "i85hpmcge4huukrxp8xnobkh7eodhsuy7dy8yphq9zafhcqeeago.bdx"
+    }]
+  }
+}
+</code></pre>
+
+### bns\_add\_known\_names <a href="#sources" id="sources"></a>
+
+Add the BNS names in the cache.
+
+Alias: _None_.
+
+Input:
+
+* _names_ - array of string; The (unhashed) name of the record.
+
+Outputs: _None_.
+
+Example:
+
+<pre><code><strong>$ curl -X POST http://127.0.0.1:19092/json_rpc -d '{ "jsonrpc": "2.0","id": "0", "method":"bns_add_known_names","params": {"names": [{"name": "victor.bdx"},{"name":"toretto.bdx"}]}}' -H 'Content-Type:application/json'
+</strong><strong>{
+</strong>  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {}
+} 
+</code></pre>
+
+### bns\_encrypt\_value <a href="#sources" id="sources"></a>
+
+Retrieve the encrypted value of the specified BNS value by indicating the type.
+
+Alias: _None_.
+
+Input:
+
+* _name_ - string; The BNS name with which to encrypt the value.
+* _type_ - string; The mapping type: "bchat" or "belnet" or "wallet".
+* _value - string;_ The value to be encrypted.
+
+Output:
+
+* _encrypted\_value -_ The encrypted value, in hex.
+
+Example:
+
+<pre><code><strong>$ curl -X POST http://127.0.0.1:19092/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"bns_encrypt_value","params":{"name":"toretto.bdx","type":"wallet","value":"9zy7tYvhhjGUPByuk8AxvjJtK2gK7Vt4ebHSS7QuKojeD7hR6G2253aMmFCpcwaAjXR75BWy7Vjor5chH3nG79Uk3aRqWtR"}}' -H 'Content-Type: application/json'
+</strong>{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+    "encrypted_value": "10686ec966200761f967ff88084590a91eb1770b9a374f2752f63b715b50be4169ad3271387ef1bf03c2ebff362df66359eff223680e6f5ad07f5b6dc24a3b2ba0f9c6bfc62083a0d2"
+  }
+}
+</code></pre>
+
+### bns\_decrypt\_value <a href="#sources" id="sources"></a>
+
+Decrypt the BNS value corresponding to the provided encrypted value.
+
+Alias: _None_.
+
+Inputs:
+
+* _name_ - string; The BNS name with which to encrypt the value.
+* _type_ - string; The mapping type: "bchat" or "belnet" or "wallet".
+* _encrypted\_value_ - string; The encrypted value represented in hex.
+
+Output:
+
+* _value -_ The value decrypted.
+
+Example:
+
+<pre><code><strong>$ curl -X POST http://127.0.0.1:19092/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"bns_decrypt_value","params":{"name":"toretto.bdx","type":"bchat","encrypted_value":"10686ec966200761f967ff88084590a91eb1770b9a374f2752f63b715b50be4169ad3271387ef1bf03c2ebff362df66359eff223680e6f5ad07f5b6dc24a3b2ba0f9c6bfc62083a0d2"}}' -H 'Content-Type: application/json'
+</strong>{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+    "value": "bdff403a579c24edd0b973f9f00211ab3574ec083b2fd97b8b87de0e413e969942"
+  }
+}
+</code></pre>
+
+### coin\_burn <a href="#sources" id="sources"></a>
+
+The specified amount will be burnt from the provided tx\_id using the unspent transaction or amount.
+
+Alias: _None_.
+
+Inputs:
+
+* _amount_ - uint64\_t; burn amount.
+* _tx\_id_ - string; Transaction ID used to find the transfer.
+* _account\_index_ - uint32\_t; (Optional) Transfer from this account index. (Defaults to 0).&#x20;
+* _subaddr\_indices_ - array of unsigned int; (Optional) List of subaddress indices to query for transfers. (defaults to 0).
+* _priority_ - unsigned int; Set a priority for the transaction. Accepted Values are: 0 and 1 for: flash and unimportant.
+* _get\_tx\_key_ - boolean; (Optional) Return the transaction keys after sending.
+* _do\_not\_relay_ - boolean; (Optional) If true, do not relay this sweep transfer. (Defaults to false).
+* _get\_tx\_hex_ - boolean; (Optional) return the transactions as hex encoded string. (Defaults to false).
+* _get\_tx\_metadata_ - boolean; (Optional) return the transaction metadata as a string. (Defaults to false).
+
+Output:
+
+* _tx\_hash_ - String for the publicly searchable transaction hash.
+* _tx\_key_ - String for the transaction key if get\_tx\_key is true, otherwise, blank string.
+* _amount_ - Amount transferred for the transaction.
+* _fee_ - Integer value of the fee charged for the txn.
+* _tx\_blob_ - Raw transaction represented as hex string, if get\_tx\_hex is true.
+* _tx\_metadata_ - Set of transaction metadata needed to relay this transfer later, if get\_tx\_metadata is true.
+* _multisig\_txset_ - Set of multisig transactions in the process of being signed (empty for non-multisig).
+* _unsigned\_txset_ - String. Set of unsigned tx for cold-signing purposes.
+
+Examples:
+
+**coin burn using tx\_id**
+
+<pre><code><strong>$ curl -X POST http://127.0.0.1:19092/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"coin_burn","params":{"tx_id" : "3d3d3b30bbf64ea1e7308bdb6e30f88660dd6b0084ae49092c4b264a0335f503"}}' -H 'Content-Type: application/json'
+</strong>{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+    "amount": 0,
+    "fee": 10000000000,
+    "multisig_txset": "",
+    "tx_blob": "",
+    "tx_hash": "903497fe966ce2c0b311d22565eb92b00e3fcb5ebce5f2d89ec2922f92e2afdc",
+    "tx_key": "",
+    "tx_metadata": "",
+    "unsigned_txset": ""
+  }
+}
+</code></pre>
+
+**coin burn using amount**
+
+<pre><code><strong>$ curl -X POST http://127.0.0.1:19092/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"coin_burn","params":{"amount":1000000000}}' -H 'Content-Type: application/json'
+</strong>{
+  "id": "0",
+  "jsonrpc": "2.0",
+  "result": {
+    "amount": 0,
+    "fee": 1012638760,
+    "multisig_txset": "",
+    "tx_blob": "",
+    "tx_hash": "8d5dfd6d451da2d7aa730fb17ee95d6669774878889ff8f78d4c2f85a3fdcb06",
+    "tx_key": "",
+    "tx_metadata": "",
+    "unsigned_txset": ""
+  }
+}
+</code></pre>
+
+
 
 #### Sources: <a href="#sources" id="sources"></a>
 

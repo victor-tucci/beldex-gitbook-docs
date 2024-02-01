@@ -34,6 +34,10 @@ Note: "atomic units" refer to the smallest fraction of 1 BDX according to the be
 * [sync\_info](daemon-rpc-guide-old.md#sync\_info)
 * [get\_txpool\_backlog](daemon-rpc-guide-old.md#get\_txpool\_backlog)
 * [get\_output\_distribution](daemon-rpc-guide-old.md#get\_output\_distribution)
+* [bns\_names\_to\_owners](daemon-rpc-guide-old.md#sources)
+* [bns\_owners\_to\_names](daemon-rpc-guide-old.md#sources-1)
+* [bns\_resolve](daemon-rpc-guide-old.md#sources-2)
+* [bns\_value\_decrypt](daemon-rpc-guide-old.md#sources-3)
 
 ### Other RPC Methods:
 
@@ -1225,6 +1229,165 @@ $ curl -X POST http://127.0.0.1:19091/json_rpc -d '{"jsonrpc":"2.0","id":"0","me
   }
 }
 
+```
+
+### bns\_names\_to\_owners <a href="#sources" id="sources"></a>
+
+Retrieve details using the name hash of the corresponding BNS name.
+
+Alias: _None_.
+
+Inputs:
+
+* _entries_ - array of string; Entries to look up.
+* include\_expired - boolean; (Optional) If provided and true, include entries in the results even if they are expired.
+
+Outputs:
+
+* _entry\_index_ - The index in request\_entry's \`entries\` array that was resolved via Beldex Name Service.
+* _name\_hash_ - The hash of the name that was queried, in base64.
+* _owner -_ The address that purchased the BNS.
+* _backup\_owner -_ Address of the backup owner. Omitted if no backup owner.
+* _encrypted\_bchat\_value_ - The encrypted bchat value.
+* _encrypted\_wallet\_value_ - The encrypted wallet value.
+* _encrypted\_belnet\_value_ - The encrypted belnet value.
+* _update\_height -_ The last height that this Beldex Name Service entry was updated on the Blockchain.
+* _expiration\_height_ - For records that expire, this will be set to the expiration block height.
+* _tx\_id_ - The txid of the mapping's most recent update or purchase.
+
+Example:
+
+```
+$ curl -X POST http://127.0.0.1:29092/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"bns_names_to_owners","params":{"entries":["4dknDpBMCXaxpvT72UvmYkyL4CgH7D0wVx3I1/unikg="]}}' -H 'Content-Type: application/json'
+{
+  "jsonrpc": "2.0",
+  "id": "0",
+  "result": {
+    "entries": [
+      {
+        "encrypted_bchat_value": "a55e54b4a5ed729db677a5ab1b64255de2a8e0311611e273ad52c0e260a542a1a0979f7ff1c09a6ba3aafc6524d41161b991dccd9f45bc0e1f9c2ac57ad9b77718a59ee27aa9d1957c",
+        "encrypted_belnet_value": "407e37d23b2679fbfc21a3c0232b43f003e457a10dd942032f6d44c91683028e160eda51baeecc3f82935a7a7607266493317132236e93c9785cdbf2a24beba7804de46e86f2807d",
+        "encrypted_wallet_value": "",
+        "entry_index": 0,
+        "expiration_height": 1358011,
+        "name_hash": "4dknDpBMCXaxpvT72UvmYkyL4CgH7D0wVx3I1/unikg=",
+        "owner": "9zy7tYvhhjGUPByuk8AxvjJtK2gK7Vt4ebHSS7QuKojeD7hR6G2253aMmFCpcwaAjXR75BWy7Vjor5chH3nG79Uk3aRqWtR",
+        "txid": "54dfe6c38c37135274380cfcffaeb4167f76176e15d13b4377fcc5c88115efb7",
+        "update_height": 1314827
+      }
+    ],
+    "status": "OK"
+  }
+}
+```
+
+### bns\_owners\_to\_names <a href="#sources" id="sources"></a>
+
+Retrieve information based on the address of the BNS-owned wallets.
+
+Alias: _None_.
+
+Inputs:
+
+* _entries -_ array of string; The owner's address to find all Beldex Name Service entries.
+* include\_expired - boolean; (Optional) If provided and true, include entries in the results even if they are expired.&#x20;
+
+Outputs:
+
+* _request\_index -_ The index in request's \`entries\` array that was resolved via Beldex Name Service.
+* _name\_hash_ - The hash of the name that was queried, in base64.
+* _owner -_ The address that purchased the BNS.
+* _backup\_owner -_ Address of the backup owner. Omitted if no backup owner.
+* _encrypted\_bchat\_value_ - The encrypted bchat value.
+* _encrypted\_wallet\_value_ - The encrypted wallet value.
+* _encrypted\_belnet\_value_ - The encrypted belnet value.
+* _update\_height -_ The last height that this Beldex Name Service entry was updated on the Blockchain.
+* _expiration\_height_ - For records that expire, this will be set to the expiration block height.
+* _tx\_id_ - The txid of the mapping's most recent update or purchase.
+
+Example:
+
+```
+$ curl -X POST http://127.0.0.1:29092/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"bns_owners_to_names","params":{"entries":["9zy7tYvhhjGUPByuk8AxvjJtK2gK7Vt4ebHSS7QuKojeD7hR6G2253aMmFCpcwaAjXR75BWy7Vjor5chH3nG79Uk3aRqWtR"]}}' -H 'Content-Type: application/json'
+{
+  "jsonrpc": "2.0",
+  "id": "0",
+  "result": {
+    "entries": [
+      {
+        "encrypted_bchat_value": "a55e54b4a5ed729db677a5ab1b64255de2a8e0311611e273ad52c0e260a542a1a0979f7ff1c09a6ba3aafc6524d41161b991dccd9f45bc0e1f9c2ac57ad9b77718a59ee27aa9d1957c",
+        "encrypted_belnet_value": "407e37d23b2679fbfc21a3c0232b43f003e457a10dd942032f6d44c91683028e160eda51baeecc3f82935a7a7607266493317132236e93c9785cdbf2a24beba7804de46e86f2807d",
+        "encrypted_wallet_value": "",
+        "expiration_height": 1358011,
+        "name_hash": "4dknDpBMCXaxpvT72UvmYkyL4CgH7D0wVx3I1/unikg=",
+        "owner": "9zy7tYvhhjGUPByuk8AxvjJtK2gK7Vt4ebHSS7QuKojeD7hR6G2253aMmFCpcwaAjXR75BWy7Vjor5chH3nG79Uk3aRqWtR",
+        "request_index": 0,
+        "txid": "54dfe6c38c37135274380cfcffaeb4167f76176e15d13b4377fcc5c88115efb7",
+        "update_height": 1314827
+      }
+    ],
+    "status": "OK"
+  }
+}
+```
+
+### bns\_resolve <a href="#sources" id="sources"></a>
+
+Retrieve the encrypted value based on the specified type and nonce.
+
+Alias: _None_.
+
+Inputs:
+
+* _type_ - uint16\_t;  The BNS type (mandatory); supported values are: 0 = bchat, 1 = wallet, 2 = belnet.
+* _name\_hash_ - string;  The 32-byte BLAKE2b hash of the name to look up, encoded as 64 hex digits or 44/43 base64 characters (with/without padding).
+
+Outputs:
+
+* _encrypted\_value_ - The encrypted BNS value, in hex.
+* _nonce_ - The nonce value used for encryption, in hex.
+
+Example:
+
+```
+$ curl -X POST http://127.0.0.1:29092/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"bns_resolve","params":{"name_hash":"4dknDpBMCXaxpvT72UvmYkyL4CgH7D0wVx3I1/unikg=","type":0}}' -H 'Content-Type: application/json'
+{
+  "jsonrpc": "2.0",
+  "id": "0",
+  "result": {
+    "encrypted_value": "a55e54b4a5ed729db677a5ab1b64255de2a8e0311611e273ad52c0e260a542a1a0979f7ff1c09a6ba3aafc6524d41161b9",
+    "nonce": "91dccd9f45bc0e1f9c2ac57ad9b77718a59ee27aa9d1957c"
+  }
+}
+```
+
+### bns\_value\_decrypt <a href="#sources" id="sources"></a>
+
+Decrypt the BNS value corresponding to the provided encrypted value.
+
+Alias: _None_.
+
+Input:
+
+* _name_ - string; The BNS name with which to encrypt the value.
+* _type_ - string; The mapping type: "bchat" or "belnet" or "wallet".
+* _encrypted\_value_ - string; The encrypted value represented in hex.
+
+Output:
+
+* _value -_ The decrypted value.
+
+Example:
+
+```
+$ curl -X POST http://127.0.0.1:29092/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"bns_value_decrypt","params":{"name":"toretto.bdx","type":"bchat","encrypted_value":"10686ec966200761f967ff88084590a91eb1770b9a374f2752f63b715b50be4169ad3271387ef1bf03c2ebff362df66359eff223680e6f5ad07f5b6dc24a3b2ba0f9c6bfc62083a0d2"}}' -H 'Content-Type: application/json'
+{
+  "jsonrpc": "2.0",
+  "id": "0",
+  "result": {
+    "value": "bdff403a579c24edd0b973f9f00211ab3574ec083b2fd97b8b87de0e413e969942"
+  }
+}
 ```
 
 ## Other Daemon RPC Calls
