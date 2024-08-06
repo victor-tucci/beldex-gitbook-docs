@@ -64,7 +64,7 @@ host -t cname localhost.bdx 127.3.2.1
 
 For example, this is the MNApp address for the Beldex explorer hosted on BelNet _**cw41adqqhykuxw51xmagkkb3fixyieat1josbux13jn6o973tqgy.bdx**_
 
-__
+
 
 ## Step 3: Download and Install Nginx
 

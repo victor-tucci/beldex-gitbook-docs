@@ -1,6 +1,6 @@
 # Master Node Express Setup
 
-Thinking of running an Beldex Master Node? Great! The guide below will help you configure a device with the necessary Master Node software packages, and stake $BDX to register the node on the Beldex network.
+Thinking of running a Beldex Master Node? Great! The guide below will help you configure a device with the necessary Master Node software packages, and stake $BDX to register the node on the Beldex network.
 
 > Note: This guide assumes some familiarity with the command line and running a Linux server. For a more detailed walkthrough, check out our full Master Node setup guide.
 
