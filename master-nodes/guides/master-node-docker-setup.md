@@ -1,3 +1,7 @@
+---
+description: A guide to setup master node using docker
+---
+
 # Master Node Docker Setup
 
 The easiest and most efficient way to set up a master node is by using Docker. Follow these two simple steps to set up a master node with Docker. We have provided a shell script to handle all the heavy lifting for you.
